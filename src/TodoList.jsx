@@ -22,14 +22,12 @@ const todoList = [
 export default function TodoList() {
   
   return (
-    <>
-      <ul>
-        {
-          todoList.map(
-            (item) => <li key={item.id}>{item.title}</li>
-          )
-        }
-      </ul>
-    </>
+    <ul>
+      {
+        todoList.map(
+          (item) => <li key={item.id}>{item.title}</li>
+        )
+      }
+    </ul>
   );
 }
