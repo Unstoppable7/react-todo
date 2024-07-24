@@ -1,5 +1,5 @@
-export default function TodoListItem(props) {
+export default function TodoListItem({ todo }) {
   return (
-    <li>{props.todo.title}</li>
+    <li>{todo.title}</li>
   );
 }
