@@ -1,0 +1,30 @@
+.listItem{
+   color: chocolate;
+   font-size: 1rem;
+   margin-right: 1rem;
+}
+
+.rowItem{
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+   margin-bottom: 1rem;
+}
+
+.removeButton{
+   color: brown;
+   font-weight: 500;
+   font-size: 0.8rem;
+   border: 1.5px solid brown;
+   background-color: antiquewhite;
+   border-radius: 0.5rem;
+   padding-left: 1rem;
+   padding-right: 1rem;
+   padding-top: 0.3rem;
+   padding-bottom: 0.3rem;
+}
+
+.removeButton:hover{
+   color: rgb(238, 72, 72);
+   border: 1.5px solid rgb(238, 72, 72);
+}

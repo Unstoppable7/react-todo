@@ -1,4 +1,5 @@
 import { useRef, useEffect } from "react";
+import styles from './TodoForm.module.css'
 
 export default function InputWithLabel({
   todoTitle,
@@ -20,6 +21,8 @@ export default function InputWithLabel({
         value={todoTitle}
         onChange={handleTitleChange}
         ref={inputRef}
+        className={styles.input}
+        placeholder="Write something..."
       />
     </>
   );

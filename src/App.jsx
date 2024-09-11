@@ -1,8 +1,9 @@
-import "./App.css";
+// import "./App.css";
 import TodoList from "./TodoList";
 import AddTodoForm from "./AddTodoForm";
 import { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import styles from "./styles.module.css";
 
 function App() {
 
@@ -135,11 +136,13 @@ function App() {
             <Route
                path="/"
                element={
-                  <>
+                  <div className={`${styles.container} ${styles.body}`}>
                      <h1>Todo List</h1>
-                     <AddTodoForm onAddTodo={postTodo} />
-                     {isLoading ? <p>Loading...</p> : <TodoList todoList={todoList} onRemoveTodo={deleteTodo} />}
-                  </>
+                     <section>
+                        <AddTodoForm onAddTodo={postTodo} />
+                        {isLoading ? <p>Loading...</p> : <TodoList todoList={todoList} onRemoveTodo={deleteTodo} />}
+                     </section>
+                  </div>
                } >
             </Route>
             <Route
