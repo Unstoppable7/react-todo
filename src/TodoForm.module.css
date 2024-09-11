@@ -1,0 +1,40 @@
+.input{
+   color: chocolate;
+   border: 1.5px solid chocolate;
+   background-color: antiquewhite;
+   border-radius: 0.5rem;
+   padding-left: 1rem;
+   padding-right: 1rem;
+   padding-top: 0.3rem;
+   padding-bottom: 0.3rem;
+   margin-right: 1rem;
+}
+
+.input:focus{
+   outline: none;
+   background-color: rgb(255, 245, 233);
+}
+
+.input::placeholder{
+   color: rgba(210, 105, 30, 0.578);
+}
+
+.button{
+   color: chocolate;
+   font-weight: 500;
+   border: 1.5px solid chocolate;
+   background-color: rgb(255, 245, 233);
+   border-radius: 0.5rem;
+   padding-left: 1rem;
+   padding-right: 1rem;
+   padding-top: 0.3rem;
+   padding-bottom: 0.3rem;
+}
+
+.button:hover{
+   background-color: antiquewhite;
+}
+
+.form{ 
+   text-align: left;
+}
