@@ -1,5 +1,6 @@
 import { useRef, useEffect } from "react";
 import styles from './TodoForm.module.css'
+import PropTypes from 'prop-types';
 
 export default function InputWithLabel({
   todoTitle,
@@ -26,4 +27,10 @@ export default function InputWithLabel({
       />
     </>
   );
+}
+
+InputWithLabel.propTypes = {
+  todoTitle: PropTypes.string,
+  handleTitleChange: PropTypes.func,
+  children: PropTypes.elementType
 }
