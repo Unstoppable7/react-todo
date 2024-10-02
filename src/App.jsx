@@ -11,6 +11,30 @@ function App() {
    const [isLoading, setIsLoading] = useState(true);
    const baseUrl = `https://api.airtable.com/v0/${import.meta.env.VITE_AIRTABLE_BASE_ID}/${import.meta.env.VITE_TABLE_NAME}`;
 
+   const [sort, setSort] = useState({ field: 'title', asc: true });
+
+   const sortData = (objA, objB) => {
+      const fieldA = objA[sort.field];
+      const fieldB = objB[sort.field];
+
+      if (!fieldA || !fieldB) {
+         return;
+      }
+      if (fieldA < fieldB) {
+         return sort.asc ? -1 : 1;
+      } else if (fieldA == fieldB) {
+         return 0;
+      } else {
+         return sort.asc ? 1 : -1;
+      }
+   }
+   useEffect(() => {
+      setTodoList((previousTodoList) => {
+         const sortedList = [...previousTodoList].sort(sortData);
+         return sortedList;
+      });
+   }, [sort]);
+
    const getTodoList = async () => {
 
       const options = {
@@ -21,6 +45,7 @@ function App() {
       try {
 
          const response = await fetch(baseUrl, options);
+         // const response = await fetch(baseUrl + "?sort%5B0%5D%5Bfield%5D=title", options);
 
          if (!response.ok) {
             throw new Error(`Error: ${response.status}`);
@@ -31,9 +56,10 @@ function App() {
          const todos = data.records.map((todo) => {
             return {
                id: todo.id,
-               title: todo.fields.title
+               title: todo.fields.title,
+               createdTime: todo.createdTime
             }
-         });
+         }).sort(sortData);
          setTodoList(todos);
          setIsLoading(false);
 
@@ -127,7 +153,10 @@ function App() {
    }
 
    function addTodo(newTodo) {
-      setTodoList((previousTodoList) => [...previousTodoList, newTodo]);
+      setTodoList((previousTodoList) => {
+         const newList = [...previousTodoList, newTodo].sort(sortData);
+         return newList;
+      });
    }
 
    return (
@@ -140,6 +169,20 @@ function App() {
                      <h1>Todo List</h1>
                      <section>
                         <AddTodoForm onAddTodo={postTodo} />
+                        <button onClick={() => {
+                           setSort(previousSort => ({
+                              field: 'title',
+                              asc: !previousSort.asc
+                           }));
+                        }}>
+                           {sort.field  === 'title'? sort.asc ? '⬆ ' : '⬇ ' : ''}Title
+                        </button>
+
+                        <button onClick={() => {
+                           setSort(previousSort => ({ field: 'createdTime', asc: !previousSort.asc }));
+                        }}>
+                           { sort.field  === 'createdTime'? sort.asc ? '⬆ ' : '⬇ ' : ''}Created Time
+                        </button>
                         {isLoading ? <p>Loading...</p> : <TodoList todoList={todoList} onRemoveTodo={deleteTodo} />}
                      </section>
                   </div>
