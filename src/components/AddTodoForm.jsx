@@ -8,7 +8,7 @@ export default function AddTodoForm({ onAddTodo }) {
 
    function handleAddTodo(event) {
       event.preventDefault();
-      onAddTodo({ title: todoTitle, id: Date.now() });
+      onAddTodo({ title: todoTitle, id: Date.now(), createdTime: Date.now() });
       setTodoTitle("");
    }
 
